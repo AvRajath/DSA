@@ -4,14 +4,15 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[List[int]]
         """
-        def permute(n):
-            if n == len(nums):
-                out.append(nums[:])
-            for i in range(n, len(nums)):
-                nums[i], nums[n] = nums[n], nums[i]
-                permute(n+1)
-                nums[i], nums[n] = nums[n], nums[i]
+        retLis = []
+        def perm(l):
+            if l == len(nums):
+                retLis.append(nums[:])
             
-        out = []
-        permute(0)
-        return out
+            for k in range(l, len(nums)):
+                nums[l], nums[k] = nums[k], nums[l]
+                perm(l+1)
+                nums[l], nums[k] = nums[k], nums[l]
+              
+        perm(0)
+        return retLis
